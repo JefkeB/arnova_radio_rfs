@@ -1,0 +1,241 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset1 Segoe UI Symbol;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang9 U-Boot\par
+\par
+> printenv\par
+\fs20 bootargs=console=ttyS1,57600n8 ip=off root=/dev/mtdblock5 rw\par
+bootcmd=smartstart\par
+bootdelay=1\par
+baudrate=57600\par
+loads_echo=1\par
+autoload=n\par
+bootfile="uImage"\par
+normboot=nand read 0x80600000 0x400000 0x300000;bootm\par
+altboot=nand read 0x80600000 0x800000 0x300000;bootm\par
+normargs=console=null ip=off rootfstype=yaffs2 root=/dev/mtdblock5 rw\par
+altargs=console=null ip=off rootfstype=yaffs2 root=/dev/mtdblock4 rw\par
+altbt=0x10\par
+lcdargs=skiplcdinit=1\par
+stdin=serial\par
+stdout=lcd\par
+stderr=lcd\par
+\fs22\par
+\fs20 Environment size: 463/524283 bytes\par
+\par
+\fs22 > bdinfo\fs20\par
+bdinfo\par
+boot_params = 0x83697F98\par
+memstart    = 0x80000000\par
+memsize     = 0x04000000\par
+flashstart  = 0xA8000000\par
+flashsize   = 0x00000000\par
+flashoffset = 0x00046CC0\par
+ethaddr     = 00:00:00:00:00:00\par
+ip_addr     = 0.0.0.0\par
+baudrate    = 57600 bps\par
+\par
+\fs22 > help smartstart\par
+\fs20 smartstart If button defined by "altbt" is pressed longer than 15s, "altboot" and "altargs" are used, otherwise, "normboot", and "normargs" are used.\par
+\par
+\fs22 > nand info\par
+\fs20 Device 0: NAND 2GiB 3,3V 8-bit, sector size 512 KiB\par
+\par
+\par
+\fs22 > setenv bootcmd 'run altboot'\fs20\par
+\fs22 > run bootcmd\par
+\fs20\par
+NAND read: device 0 offset 0x800000, size 0x300000\par
+ 3145728 bytes read: OK\par
+## Booting image at 80600000 ...\par
+   Image Name:   Linux-2.6.24.3\par
+   Image Type:   MIPS Linux Kernel Image (gzip compressed)\par
+   Data Size:    2252587 Bytes =  2.1 MB\par
+   Load Address: 80010000\par
+   Entry Point:  80290b90\par
+   Verifying Checksum ... OK\par
+   Uncompressing Kernel Image ... OK\par
+\par
+Starting kernel ...\par
+\par
+Linux version 2.6.24.3 (colman@colinux) (gcc version 4.1.2) #1255 PREEMPT Tue Aug 17 02:12:31 UTC 2010\par
+SDRAM: Bus Width = 32, CAS Width = 9, RAS Width = 13, # of Bank = 4, Total Size = 64 Mbyte\par
+CPU revision is: 2ed0024f (Ingenic JZRISC)\par
+CPU clock: 378MHz, System clock: 126MHz, Peripheral clock: 126MHz, Memory clock: 126MHz\par
+JZ4750D CETUS board setup\par
+Determined physical RAM map:\par
+ memory: 04000000 @ 00000000 (usable)\par
+Zone PFN ranges:\par
+  Normal          0 ->    16384\par
+Movable zone start PFN for each node\par
+early_node_map[1] active PFN ranges\par
+    0:        0 ->    16384\par
+Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 16256\par
+Kernel command line: console=ttyS1,57600n8 ip=off root=/dev/mtdblock5 rw build=100714-0 skiplcdinit=1\par
+Primary instruction cache 16kB, VIPT, 4-way, linesize 32 bytes.\par
+Primary data cache 16kB, 4-way, VIPT, no aliases, linesize 32 bytes\par
+Synthesized clear page handler (25 instructions).\par
+Synthesized copy page handler (44 instructions).\par
+Synthesized TLB refill handler (20 instructions).\par
+Synthesized TLB load handler fastpath (32 instructions).\par
+Synthesized TLB store handler fastpath (32 instructions).\par
+Synthesized TLB modify handler fastpath (31 instructions).\par
+PID hash table entries: 256 (order: 8, 1024 bytes)\par
+Console: colour dummy device 80x25\par
+console [ttyS1] enabled\par
+Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)\par
+Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)\par
+Memory: 60628k/65536k available (2583k kernel code, 4852k reserved, 1400k data, 140k init, 0k highmem)\par
+Mount-cache hash table entries: 512\par
+net_namespace: 64 bytes\par
+NET: Registered protocol family 16\par
+Linux Plug and Play Support v0.97 (c) Adam Belay\par
+SCSI subsystem initialized\par
+NET: Registered protocol family 2\par
+Time: jz_clocksource clocksource has been installed.\par
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)\par
+TCP established hash table entries: 2048 (order: 2, 16384 bytes)\par
+TCP bind hash table entries: 2048 (order: 1, 8192 bytes)\par
+TCP: Hash tables configured (established 2048 bind 2048)\par
+TCP reno registered\par
+Total 16MB memory at 0x3000000 was reserved for IPU\par
+Total 0MB memory1 at 0x467000 was reserved for IPU\par
+Power Management for JZ\par
+yaffs Aug 16 2010 09:51:23 Installing.\par
+io scheduler noop registered\par
+io scheduler anticipatory registered (default)\par
+io scheduler deadline registered\par
+io scheduler cfq registered\par
+LCDC: PixClock:7411764\par
+LCDC: PixClock:7411764\par
+fb0: jz-lcd frame buffer device, using 2048K of video memory\par
+JzSOC onchip RTC installed !!!\par
+JzSOC: char device family.\par
+Jz generic touch screen driver registered\par
+JZ4740 SAR-ADC driver registered\par
+JZ UDC hotplug driver registered\par
+Virtual Driver of TCSM registered\par
+Serial: 8250/16550 driver $Revision: 1.5 $ 4 ports, IRQ sharing disabled\par
+serial8250: ttyS0 at MMIO 0x0 (irq = 9) is a 16550A\par
+serial8250: ttyS1 at MMIO 0x0 (irq = 8) is a 16550A\par
+serial8250: ttyS2 at MMIO 0x0 (irq = 7) is a 16550A\par
+loop: module loaded\par
+SKY_IO: driver ver 1.0.0\par
+SKY_IO: misc dev got minor 63\par
+Driver 'sd' needs updating - please use bus_type methods\par
+JZ NAND init: DMA mode, using DMA buffer in upper layer,  8bit BCH.\par
+NAND device: master_id: 0xecd5\par
+NAND device: writesize: 0x1000, erasesize: 0x80000, oobsize: 128, busw: 0\par
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xd5 (Samsung NAND 2GiB 3,3V 8-bit)\par
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xd5 (Samsung NAND 2GiB 3,3V 8-bit) planenum:2\par
+nand_scan_ident(): Bad block flag page in block: 127.\par
+Nand using two-plane mode, and resized to writesize:8192 oobsize:256 blocksize:0x100000\par
+Scanning device for bad blocks\par
+Allocate 0x80000 bytes for jz_mtdblock9 at address:0x81100000.\par
+Creating 10 MTD partitions on "NAND 2GiB 3,3V 8-bit":\par
+0x000000000-0x000400000 : "NAND BOOT partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x000400000-0x000800000 : "NAND KERNEL partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x000800000-0x000c00000 : "Failsafe KERNEL partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x000c00000-0x001000000 : "System DATA partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x001000000-0x009000000 : "ALT FS partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x009000000-0x019000000 : "NAND ROOTFS partition" "dma_mode" "jz_mtdblock_invalid"\par
+JZ4750_LCD: Show custom animated logo\par
+0x019000000-0x019c00000 : "NAND DATA1 partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x019c00000-0x01bc00000 : "NAND DATA2 partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x01bc00000-0x01dc00000 : "NAND DATA3 partition" "dma_mode" "jz_mtdblock_invalid"\par
+0x01dc00000-0x080000000 : "NAND VFAT partition" "dma_mode" "jz_mtdblock_valid"\par
+usb cable insert!\par
+jz_i2c jz_i2c.0: Soft i2c bus driver.\par
+EzI2CKEY: driver ver 3.0.4\par
+EzI2CKEY: Push button keyboard detected\par
+EzI2CKEY: misc dev got minor 62\par
+FM_RDA580X: driver ver 1.0.0\par
+FM_RDA580X fm_rda580x_init: FM Module not found\par
+SC16IS740: driver ver 1.0.0\par
+SC16IS740 i2c_uart_init: No sc16is740 found\par
+JzSOC Watchdog Timer: timer margin 60 sec\par
+JZ SD/MMC card driver registered\par
+register codec 801fc010\par
+mmc0: new SD card at address b368\par
+mmcblk0: mmc0:b368\f1\u767?\u767?\u767?\u767?\u767?\f2\u9618?\f0  991232KiB\par
+ mmcblk0: unknown partition table\par
+JZ I2S OSS audio driver initialized\par
+TCP cubic registered\par
+NET: Registered protocol family 1\par
+NET: Registered protocol family 17\par
+ieee80211: 802.11 data/management/control stack, git-1.1.13\par
+ieee80211: Copyright (C) 2004-2005 Intel Corporation <jketreno@linux.intel.com>\par
+yaffs: dev is 32505861 name is "mtdblock5"\par
+yaffs: Attempting MTD mount on 31.5, "mtdblock5"\par
+yaffs: auto selecting yaffs2\par
+yaffs: restored from checkpoint\par
+VFS: Mounted root (yaffs filesystem).\par
+Freeing unused kernel memory: 140k freed\par
+Algorithmics/MIPS FPU Emulator v1.5\par
+init started: BusyBox v1.8.2 (2008-01-09 19:22:01 CST)\par
+starting pid 157, tty '': '/etc/init.d/rcS'\par
+Starting udevd ...\par
+JZ4740 USB Device Controller\par
+version: 13-Mar-2008\par
+ Use the block cache allocated early in nand_base.c.\par
+ gadget: File-backed Storage Gadget, version: 7 August 2007\par
+ gadget: Number of LUNs=1\par
+g_file_storage gadget-lun0: ro=0, file: /dev/mtdblock9\par
+ gadget: high speed config #1\par
+rtc_wjpk: module license 'unspecified' taints kernel.\par
+rtc_wjpk installed\par
+athspi_jz4755_hcd version: 2.2.0.78-110104, DMA Mode\par
+Colman: op_clock = 33000000\par
+Ar6k SPI use TX/RX DMA channel: 6/7\par
+Youli::HcdInitialize: set starup clock [24000000]\par
+AR6k spi clk request = 24000000 Hz, actual = 23625000 Hz\par
+AR6k spi clk request = 33000000 Hz, actual = 31500000 Hz\par
+ar6000: no version for "stack_force_interrupt_clear" found: kernel tainted.\par
+ar6000 version: 2.2.0.78-101112\par
+Normal WIFI mode.\par
+Device: c00cea28\par
+ar6000_available\par
+Firmware mode set\par
+ BMI enabled\par
+ar6000_avail: name=eth0 hifdevice=0xc00e28b8, dev=0x810c8000 (0), ar=0x810c8360\par
+old options [0] old sleep [13]\par
+use internal clock\par
+AR6000: download fake eeprom\par
+enable_SI\par
+eeprom_type_detect: ERROR : address type was wrongly set\par
+eeprom_ar6000_transfer file offset opsition: 0h\par
+eeprom_ar6000_transfer: length=768\par
+eeprom_ar6000_transfer try to open file /system/wifi/softmac\par
+eeprom_ar6000_transfer: file /system/wifi/softmac filp_open error\par
+disable_SI\par
+AR6000: BMISetAppStart\par
+AR6000: enable HI_OPTION_TIMER_WAR\par
+AR6000: firmware_transfer\par
+firmware_transfer: Enter, filename=/system/wifi/athwlan.bin.z77\par
+firmware_transfer file offset opsition: 0h\par
+firmware_transfer: length=98324, address=0x502070\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=8192, org_len=8192\par
+firmware_transfer: BMILZData: len=20, org_len=20\par
+firmware_transfer: Enter, filename=/system/wifi/data.patch.hw2_0.bin\par
+firmware_transfer file offset opsition: 0h\par
+firmware_transfer: length=1336, address=0x52d6c8\par
+ar6000_init() Got WMI @ 0x81b31c00.\par
+Colman: Re-enable IRQ\par
+Youli::ar6000_init: wait wmi_ready event to trigger host app area\par
+\par
+Youli::ar6000_ready_event: use wmi_ready event trigger setting host app\par
+mac address = 00:0a:eb:aa:5e:85\par
+AR6000 Reg Code = 0x40000060\par
+starting pid 254, tty '': '/bin/sh'\par
+}
+ 

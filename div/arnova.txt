@@ -1,0 +1,72 @@
+bootargs=console=ttyS1,57600n8 ip=off root=/dev/mtdblock5 rw
+
+setenv bootargs "console=ttyS1,57600n8 ip=off root=/dev/mmcblk0p1 rootwait rw rootfstype=ext2"
+setenv bootargs console=ttyS1,57600n8 ip=off root=/dev/mmcblk0p1 rootwait rw rootfstype=ext2
+
+
+
+KMP811# printenv
+bootargs=console=ttyS1,57600n8 ip=off root=/dev/mtdblock5 rw
+bootcmd=smartstart
+bootdelay=1
+baudrate=57600
+loads_echo=1
+autoload=n
+bootfile="uImage"
+normboot=nand read 0x80600000 0x400000 0x300000;bootm
+altboot=nand read 0x80600000 0x800000 0x300000;bootm
+normargs=console=null ip=off rootfstype=yaffs2 root=/dev/mtdblock5 rw
+altargs=console=null ip=off rootfstype=yaffs2 root=/dev/mtdblock4 rw
+altbt=0x10
+lcdargs=skiplcdinit=1
+stdin=serial
+stdout=lcd
+stderr=lcd
+
+
+JZ NAND init: DMA mode, using DMA buffer in upper layer,  8bit BCH.
+NAND device: master_id: 0xecd5
+NAND device: writesize: 0x1000, erasesize: 0x80000, oobsize: 128, busw: 0
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xd5 (Samsung NAND 2GiB 3,3V 8-bit)
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xd5 (Samsung NAND 2GiB 3,3V 8-bit) planenum:2
+nand_scan_ident(): Bad block flag page in block: 127.
+Nand using two-plane mode, and resized to writesize:8192 oobsize:256 blocksize:0x100000
+Scanning device for bad blocks
+Allocate 0x80000 bytes for jz_mtdblock9 at address:0x81100000.
+Creating 10 MTD partitions on "NAND 2GiB 3,3V 8-bit":
+0x000000000-0x000400000 : "NAND BOOT partition" "dma_mode" "jz_mtdblock_invalid"
+0x000400000-0x000800000 : "NAND KERNEL partition" "dma_mode" "jz_mtdblock_invalid"
+0x000800000-0x000c00000 : "Failsafe KERNEL partition" "dma_mode" "jz_mtdblock_invalid"
+0x000c00000-0x001000000 : "System DATA partition" "dma_mode" "jz_mtdblock_invalid"
+0x001000000-0x009000000 : "ALT FS partition" "dma_mode" "jz_mtdblock_invalid"
+0x009000000-0x019000000 : "NAND ROOTFS partition" "dma_mode" "jz_mtdblock_invalid"
+JZ4750_LCD: Show custom animated logo
+0x019000000-0x019c00000 : "NAND DATA1 partition" "dma_mode" "jz_mtdblock_invalid"
+0x019c00000-0x01bc00000 : "NAND DATA2 partition" "dma_mode" "jz_mtdblock_invalid"
+0x01bc00000-0x01dc00000 : "NAND DATA3 partition" "dma_mode" "jz_mtdblock_invalid"
+0x01dc00000-0x080000000 : "NAND VFAT partition" "dma_mode" "jz_mtdblock_valid"
+
+
+
+
+EXT2-fs: #inodes per group too big: 138816
+yaffs: dev is 32505861 name is "mtdblock5"
+yaffs: Attempting MTD mount on 31.5, "mtdblock5"
+yaffs: auto selecting yaffs2
+yaffs: restored from checkpoint
+VFS: Mounted root (yaffs filesystem).
+
+
+
+# cat /proc/mtd
+dev:    size   erasesize  cpu_mode jz_mtdblock_invalid       name
+mtd0: 000400000 00080000     0            1             "NAND BOOT partition"
+mtd1: 000400000 00080000     0            1             "NAND KERNEL partition"
+mtd2: 000400000 00080000     0            1             "Failsafe KERNEL partition"
+mtd3: 000400000 00080000     0            1             "System DATA partition"
+mtd4: 008000000 00080000     0            1             "ALT FS partition"
+mtd5: 010000000 00080000     0            1             "NAND ROOTFS partition"
+mtd6: 000c00000 00080000     0            1             "NAND DATA1 partition"
+mtd7: 002000000 00080000     0            1             "NAND DATA2 partition"
+mtd8: 002000000 00080000     0            1             "NAND DATA3 partition"
+mtd9: 062400000 00080000     0            0             "NAND VFAT partition"
